@@ -49,7 +49,7 @@ typedef struct NSVGrasterizer NSVGrasterizer;
 */
 
 // Allocated rasterizer context.
-NSVGrasterizer* nsvgCreateRasterizer(void);
+NSVG_EXPORT NSVGrasterizer* nsvgCreateRasterizer(void);
 
 // Rasterizes SVG image, returns RGBA image (non-premultiplied alpha)
 //   r - pointer to rasterizer context
@@ -60,12 +60,12 @@ NSVGrasterizer* nsvgCreateRasterizer(void);
 //   w - width of the image to render
 //   h - height of the image to render
 //   stride - number of bytes per scaleline in the destination buffer
-void nsvgRasterize(NSVGrasterizer* r,
+NSVG_EXPORT void nsvgRasterize(NSVGrasterizer* r,
 				   NSVGimage* image, float tx, float ty, float scale,
 				   unsigned char* dst, int w, int h, int stride);
 
 // Deletes rasterizer context.
-void nsvgDeleteRasterizer(NSVGrasterizer*);
+NSVG_EXPORT void nsvgDeleteRasterizer(NSVGrasterizer*);
 
 
 #ifndef NANOSVGRAST_CPLUSPLUS

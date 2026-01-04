@@ -1,3 +1,9 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
 ## Compiled source #
 *.com
 *.class
@@ -29,3 +35,6 @@ example/_*
 
 ## xcode specific
 *xcuserdata*
+
+x64
+.idea

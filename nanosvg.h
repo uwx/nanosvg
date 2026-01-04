@@ -173,18 +173,31 @@ typedef struct NSVGimage
 	NSVGshape* shapes;			// Linked list of shapes in the image.
 } NSVGimage;
 
+#if defined(_WIN32) && defined(NSVG_DLL)
+#    ifdef NSVG_BUILD
+	//       Compiling a Windows DLL
+#        define NSVG_EXPORT __declspec(dllexport)
+#    else
+	//       Using a Windows DLL
+#        define NSVG_EXPORT __declspec(dllimport)
+#    endif
+	// Windows or Linux static library, or Linux so
+#else
+#    define NSVG_EXPORT
+#endif
+	
 // Parses SVG file from a file, returns SVG image as paths.
-NSVGimage* nsvgParseFromFile(const char* filename, const char* units, float dpi);
+NSVG_EXPORT NSVGimage* nsvgParseFromFile(const char* filename, const char* units, float dpi);
 
 // Parses SVG file from a null terminated string, returns SVG image as paths.
 // Important note: changes the string.
-NSVGimage* nsvgParse(char* input, const char* units, float dpi);
+NSVG_EXPORT NSVGimage* nsvgParse(char* input, const char* units, float dpi);
 
 // Duplicates a path.
-NSVGpath* nsvgDuplicatePath(NSVGpath* p);
+NSVG_EXPORT NSVGpath* nsvgDuplicatePath(NSVGpath* p);
 
 // Deletes an image.
-void nsvgDelete(NSVGimage* image);
+NSVG_EXPORT void nsvgDelete(NSVGimage* image);
 
 #ifndef NANOSVG_CPLUSPLUS
 #ifdef __cplusplus
